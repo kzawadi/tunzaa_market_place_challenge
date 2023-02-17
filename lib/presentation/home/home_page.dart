@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tunzaa_market_place_challenge/application/providers.dart';
 import 'package:tunzaa_market_place_challenge/presentation/utils/app_menu.dart';
 import 'package:tunzaa_market_place_challenge/presentation/utils/split_view.dart';
 

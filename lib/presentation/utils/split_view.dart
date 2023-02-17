@@ -42,11 +42,6 @@ class SplitView extends StatelessWidget {
         drawer: SizedBox(
           width: menuWidth,
           child: Drawer(
-            // shape: const RoundedRectangleBorder(
-            //   borderRadius: BorderRadius.only(
-            //       topRight: Radius.circular(20),
-            //       bottomRight: Radius.circular(20)),
-            // ),
             child: menu,
           ),
         ),
