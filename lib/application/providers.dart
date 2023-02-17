@@ -16,20 +16,18 @@ final shoppingServicesProviderProvider =
 
 /// This a provider provides state data of the product catalogue
 final shoppingNotifierProvider =
-    StateNotifierProvider<ProductscatalogueNotifier, ShopState>((ref) {
-  return ProductscatalogueNotifier(ref: ref);
+    StateNotifierProvider<ProductNotifier, ShopState>((ref) {
+  return ProductNotifier(ref: ref);
 });
 
 final cartProvider = StateProvider<List<ShoppingItemModel>>((ref) {
-  final result = ref.watch(shoppingNotifierProvider).map(
-        loading: (_) {},
-        onError: (_) {},
-        onData: (v) {
-          return v.items.where((element) => element.inCart == true).toList();
-        },
-      );
+  final result = ref
+      .watch(shoppingNotifierProvider)
+      .item
+      .where((element) => element.inCart == true)
+      .toList();
 
-  return result!;
+  return result;
 });
 
 // a map of ("page name", WidgetBuilder) pairs

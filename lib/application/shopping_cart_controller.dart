@@ -12,41 +12,94 @@ import 'package:tunzaa_market_place_challenge/domain/models/shopping_item_model.
 /// and a list of ProductItems[ShoppingItemModel]. This ensure that our
 /// apps works functional and no function from services return void
 /// {Functional programming}. so we handle every situation according
-class ProductscatalogueNotifier extends StateNotifier<ShopState> {
-//
-  ProductscatalogueNotifier({required this.ref})
-      : super(const ShopState.loading()) {
-    fetchItems(ref: ref);
+
+class ProductNotifier extends StateNotifier<ShopState> {
+  ProductNotifier({required this.ref}) : super(const ShopState()) {
+    fetchItems();
   }
   final Ref ref;
 
-  Future fetchItems({required Ref ref}) async {
+  Future fetchItems() async {
     final shooppingServicesInterface =
         ref.read(shoppingServicesProviderProvider);
 
-    state = const ShopState.loading();
+    state = state.copyWith(isLoading: true);
 
     final results = await shooppingServicesInterface.fetchItems();
     state = results.fold(
-      (l) => ShopState.onError(l),
-      (r) => ShopState.onData(items: r),
+      (l) => state.copyWith(failures: l),
+      (r) => state.copyWith(item: r, isLoading: false),
     );
   }
 
-  void addItemToCart(int id, {required bool inCart}) {
-    final data = ref.watch(cartProvider);
+  Future search(String searchterm) async {
+    Future.delayed(const Duration(milliseconds: 500)).then((value) async {
+      final shooppingServicesInterface =
+          ref.read(shoppingServicesProviderProvider);
+      state = state.copyWith(isLoading: true);
 
-    final updatesProduct = state.maybeWhen(
-        orElse: () {},
-        onData: (d) {
-          return d
-              .firstWhere((element) => element.id == id)
-              .copyWith(inCart: inCart);
-        });
+      final results = await shooppingServicesInterface.fetchItems();
+//todo(kzawadi) a weird behavior happens when you modify a list of a modified list
+//todo(kzawadi) the comented out code is usable b ut opinionated
+      // Convert list to list of movies using the movie class constructor with simple filter title function inside
+      final searchedList =
+          // state.item
+          //     .where((element) =>
+          //         element.title!.toLowerCase().contains(searchterm.toLowerCase()))
+          //     .toList();
+          results.fold(
+        (l) => null,
+        (r) => r
+            .where((element) =>
+                element.title!.toLowerCase().contains(searchterm.toLowerCase()))
+            .toList(),
+      );
+      // var p = state.item;
+      // if (searchterm.isNotEmpty) {
+      //   state = state.copyWith(item: searchedList, isLoading: false);
+      // } else {
+      //   state = state.copyWith(item: p, isLoading: false);
+      // }
 
-    // var v = [
-    //     for (int i = 0; i < state.length; i++)
-    //       if (state[i].id == id) updatedProduct else state[i]
-    //   ];
+      state = state.copyWith(item: searchedList!, isLoading: false);
+    });
+  }
+
+  Future addToCart(int id, {required bool inCart}) async {
+    final updatedItems = state.item
+        .firstWhere((element) => element.id == id)
+        .copyWith(inCart: inCart);
+
+    var v = [
+      for (int i = 0; i < state.item.length; i++)
+        if (state.item[i].id == id) updatedItems else state.item[i]
+    ];
+
+    state = state.copyWith(item: v);
+  }
+
+  Future filter(int filter) async {
+    final shooppingServicesInterface =
+        ref.read(shoppingServicesProviderProvider);
+    state = state.copyWith(isLoading: true);
+
+    final results = await shooppingServicesInterface.fetchItems();
+    final filteredList =
+        // state.item
+        //     .where((element) =>
+        //         element.title!.toLowerCase().contains(searchterm.toLowerCase()))
+        //     .toList();
+        results.fold(
+      (l) => null,
+      (r) => r.where((element) => element.price! <= filter).toList(),
+    );
+    // var p = state.item;
+    // if (searchterm.isNotEmpty) {
+    //   state = state.copyWith(item: searchedList, isLoading: false);
+    // } else {
+    //   state = state.copyWith(item: p, isLoading: false);
+    // }
+
+    state = state.copyWith(item: filteredList!, isLoading: false);
   }
 }

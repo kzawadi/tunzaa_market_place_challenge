@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tunzaa_market_place_challenge/application/providers.dart';
 import 'package:tunzaa_market_place_challenge/presentation/utils/page_scaffold.dart';
 import 'package:tunzaa_market_place_challenge/presentation/widgets/products.dart';
-import 'package:tunzaa_market_place_challenge/presentation/widgets/tunzaa_failure_view.dart';
 
 class ShoppingPage extends ConsumerWidget {
   const ShoppingPage({super.key});
@@ -12,37 +13,67 @@ class ShoppingPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // watch and rebuild when the state changes
     final state = ref.watch(shoppingNotifierProvider);
-    // ref.listen<ShopState>( //todo(kzawadi) changes to custom state
-    //   shoppingNotifierProvider,
-    //   (_, state) => state.whenOrNull(onError: (_) => showSnackbarOnError(context),)
-    // );
+
     return PageScaffold(
-        title: 'Shopping',
-        body: state.map(
-          loading: (_) {
-            return const Center(child: CupertinoActivityIndicator());
-          },
-          onError: (onError) {
-            return TunzaaFaiureView(tunzaaFailures: onError.failures);
-          },
-          onData: (onData) {
-            return ProductView(shoppingItemModel: onData.items);
-          },
-        )
-        // state.when(
-        //   data: (data) {
-        //     return data.fold(
-        //       (l) => TunzaaFaiureView(tunzaaFailures: l),
-        //       (r) => ProductView(shoppingItemModel: r),
-        //     );
-        //   },
-        //   error: (e, s) {
-        //     return const Text('Please restart app');
-        //   },
-        //   loading: () {
-        //     return const Center(child: CupertinoActivityIndicator());
-        //   },
-        // ),
-        );
+      title: 'Shopping',
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        ),
+                        hintText: 'search an iterm',
+                      ),
+                      onChanged: (text) async {
+                        // text here is the inputed text
+                        await ref
+                            .read(shoppingNotifierProvider.notifier)
+                            .search(text);
+                      },
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        ),
+                        hintText: 'Filter by price',
+                      ),
+                      onChanged: (text) async {
+                        // text here is the inputed text
+                        await ref
+                            .read(shoppingNotifierProvider.notifier)
+                            .filter(int.parse(text));
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          state.isLoading
+              ? const Center(child: CupertinoActivityIndicator())
+              : Expanded(child: ProductView(shoppingItemModel: state.item)),
+        ],
+      ),
+    );
   }
 }

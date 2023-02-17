@@ -5,9 +5,12 @@ import 'package:tunzaa_market_place_challenge/domain/models/shopping_item_model.
 part 'shop_state.freezed.dart';
 
 @freezed
-class ShopState with _$ShopState {
-  const factory ShopState.loading() = _loading;
-  const factory ShopState.onData({required List<ShoppingItemModel> items}) =
-      _onData;
-  const factory ShopState.onError(TunzaaFailures failures) = _onError;
+abstract class ShopState with _$ShopState {
+  const factory ShopState({
+    @Default([]) List<ShoppingItemModel> item,
+    @Default(true) bool isLoading,
+    TunzaaFailures? failures,
+  }) = _ShopState;
+
+  const ShopState._();
 }
