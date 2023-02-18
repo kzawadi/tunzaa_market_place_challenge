@@ -15,18 +15,18 @@ Android Apk
 
 <img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot%202023-02-18%20at%204.18.45%20PM.png">
 
-<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162243.png" width="400" height="800">
+<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162243.png" width="350" height="760">
 
-<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162252.png">
+<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162252.png" width="350" height="750">
 
-<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162243.png">
+<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162243.png" width="350" height="750">
 
-<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162252.png">
+<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162252.png" width="350" height="750">
 
-<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162319.png">
+<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162319.png" width="350" height="750">
 
-<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162453.png">
+<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162453.png" width="350" height="750">
 
-<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162613.png">
+<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162613.png" width="350" height="750">
 
-<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20Max%20-%202023-02-18%20at%2016.08.12.png">
+<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20Max%20-%202023-02-18%20at%2016.08.12.png" width="350" height="750">
