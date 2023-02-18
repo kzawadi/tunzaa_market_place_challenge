@@ -2,15 +2,9 @@
 
 A Tiunzaa market place challenge
 
-## Getting Started
+A Tunzaa challenge
 
-This project is a starting point for a Flutter application.
+Android Apk
+[Download android apk here:](https://drive.google.com/file/d/1LE2sBGdlDBE5gseaRWixG56INQQ8iuQ-/view?usp=sharing)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Tunzaa challenge screenshot](https://raw.githubusercontent.com/Descent098/ezcv/master/.github/logo.png)

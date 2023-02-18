@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tunzaa_market_place_challenge/application/providers.dart';
 import 'package:tunzaa_market_place_challenge/presentation/utils/page_scaffold.dart';
 import 'package:tunzaa_market_place_challenge/presentation/widgets/products_view.dart';
 
-class ShoppingPage extends HookConsumerWidget {
+class ShoppingPage extends ConsumerWidget {
   ShoppingPage({super.key});
 
   Timer? _debounce;

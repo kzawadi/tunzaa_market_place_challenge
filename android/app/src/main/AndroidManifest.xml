@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tunzaa.tunzaa_market_place_challenge">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="tunzaa_market_place_challenge"
         android:name="${applicationName}"
