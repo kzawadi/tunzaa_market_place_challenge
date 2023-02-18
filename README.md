@@ -15,7 +15,7 @@ Android Apk
 
 <img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot%202023-02-18%20at%204.18.45%20PM.png">
 
-<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162243.png">
+<img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162243.png" width="400" height="800">
 
 <img src="https://github.com/kzawadi/tunzaa_market_place_challenge/blob/main/screenshot/Screenshot_20230218-162252.png">
 
