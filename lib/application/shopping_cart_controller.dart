@@ -33,36 +33,37 @@ class ProductNotifier extends StateNotifier<ShopState> {
   }
 
   Future search(String searchterm) async {
-    Future.delayed(const Duration(milliseconds: 500)).then((value) async {
-      final shooppingServicesInterface =
-          ref.read(shoppingServicesProviderProvider);
-      state = state.copyWith(isLoading: true);
+    // Future.delayed(const Duration(milliseconds: 500)).then((value) async {
 
-      final results = await shooppingServicesInterface.fetchItems();
+    // });
+    final shooppingServicesInterface =
+        ref.read(shoppingServicesProviderProvider);
+    state = state.copyWith(isLoading: true);
+
+    final results = await shooppingServicesInterface.fetchItems();
 //todo(kzawadi) a weird behavior happens when you modify a list of a modified list
 //todo(kzawadi) the comented out code is usable b ut opinionated
-      // Convert list to list of movies using the movie class constructor with simple filter title function inside
-      final searchedList =
-          // state.item
-          //     .where((element) =>
-          //         element.title!.toLowerCase().contains(searchterm.toLowerCase()))
-          //     .toList();
-          results.fold(
-        (l) => null,
-        (r) => r
-            .where((element) =>
-                element.title!.toLowerCase().contains(searchterm.toLowerCase()))
-            .toList(),
-      );
-      // var p = state.item;
-      // if (searchterm.isNotEmpty) {
-      //   state = state.copyWith(item: searchedList, isLoading: false);
-      // } else {
-      //   state = state.copyWith(item: p, isLoading: false);
-      // }
+    // Convert list to list of movies using the movie class constructor with simple filter title function inside
+    final searchedList =
+        // state.item
+        //     .where((element) =>
+        //         element.title!.toLowerCase().contains(searchterm.toLowerCase()))
+        //     .toList();
+        results.fold(
+      (l) => null,
+      (r) => r
+          .where((element) =>
+              element.title!.toLowerCase().contains(searchterm.toLowerCase()))
+          .toList(),
+    );
+    // var p = state.item;
+    // if (searchterm.isNotEmpty) {
+    //   state = state.copyWith(item: searchedList, isLoading: false);
+    // } else {
+    //   state = state.copyWith(item: p, isLoading: false);
+    // }
 
-      state = state.copyWith(item: searchedList!, isLoading: false);
-    });
+    state = state.copyWith(item: searchedList!, isLoading: false);
   }
 
   Future addToCart(int id, {required bool inCart}) async {
@@ -78,10 +79,11 @@ class ProductNotifier extends StateNotifier<ShopState> {
     state = state.copyWith(item: v);
   }
 
-  Future filter(int filter) async {
+  Future filter(int? filter) async {
     final shooppingServicesInterface =
         ref.read(shoppingServicesProviderProvider);
     state = state.copyWith(isLoading: true);
+    int term = filter ?? 10000000;
 
     final results = await shooppingServicesInterface.fetchItems();
     final filteredList =
@@ -91,7 +93,7 @@ class ProductNotifier extends StateNotifier<ShopState> {
         //     .toList();
         results.fold(
       (l) => null,
-      (r) => r.where((element) => element.price! <= filter).toList(),
+      (r) => r.where((element) => element.price! <= term).toList(),
     );
     // var p = state.item;
     // if (searchterm.isNotEmpty) {

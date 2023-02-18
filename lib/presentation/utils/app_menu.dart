@@ -1,4 +1,3 @@
-// a map of ("page name", WidgetBuilder) pairs
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tunzaa_market_place_challenge/application/providers.dart';
@@ -21,52 +20,36 @@ class AppMenu extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // 2. watch the provider's state
     final selectedPageName = ref.watch(selectedPageNameProvider.notifier).state;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: ListView(
-          physics: const NeverScrollableScrollPhysics(),
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: const Text('Tunzaa Demo'),
-              accountEmail: const Text('tunzaa@demo.com'),
-              currentAccountPicture: CircleAvatar(
-                child: ClipOval(
-                  child: Image.network(
-                    'https://pbs.twimg.com/profile_images/1382364051276173312/O_bNN6BU_400x400.jpg',
-                    fit: BoxFit.cover,
-                    width: 90,
-                    height: 90,
-                  ),
-                ),
+    return ListView(
+      padding: EdgeInsets.zero,
+      physics: const NeverScrollableScrollPhysics(),
+      children: <Widget>[
+        const DrawerHeader(
+            decoration: BoxDecoration(
+              // color: Colors.blue,
+              image: DecorationImage(
+                fit: BoxFit.contain,
+                image:
+                    NetworkImage('https://tunzaa.co.tz/images/tunzaa_logo.png'),
               ),
-              decoration: const BoxDecoration(
-                // color: Colors.blue,
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                      'https://pbs.twimg.com/profile_banners/1194647991560355840/1629090574/1500x500'),
-                ),
-                // shape: BoxShape.values.
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
+              // shape: BoxShape.values.
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
               ),
-            ),
-            const SizedBox(height: 50),
-            for (var pageName in availablePages.keys)
-              PageListTile(
-                // 3. pass the selectedPageName as an argument
-                selectedPageName: selectedPageName,
-                pageName: pageName,
-                onPressed: () => _selectPage(context, ref, pageName),
-              ),
-          ],
-        ),
-      ),
+            ), //BoxDecoration
+            child: SizedBox.shrink()),
+        const SizedBox(height: 50),
+        for (var pageName in availablePages.keys)
+          PageListTile(
+            // 3. pass the selectedPageName as an argument
+            selectedPageName: selectedPageName,
+            pageName: pageName,
+            onPressed: () => _selectPage(context, ref, pageName),
+          ),
+      ],
     );
+    // );
   }
 }
 

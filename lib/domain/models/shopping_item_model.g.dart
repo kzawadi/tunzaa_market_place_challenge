@@ -12,6 +12,10 @@ _$_ShoppingItemModel _$$_ShoppingItemModelFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String?,
       price: (json['price'] as num?)?.toDouble(),
       image: json['image'] as String?,
+      description: json['description'] as String?,
+      rating: json['rating'] == null
+          ? null
+          : RatingModel.fromJson(json['rating'] as Map<String, dynamic>),
       inCart: json['inCart'] as bool? ?? false,
     );
 
@@ -22,5 +26,7 @@ Map<String, dynamic> _$$_ShoppingItemModelToJson(
       'title': instance.title,
       'price': instance.price,
       'image': instance.image,
+      'description': instance.description,
+      'rating': instance.rating,
       'inCart': instance.inCart,
     };

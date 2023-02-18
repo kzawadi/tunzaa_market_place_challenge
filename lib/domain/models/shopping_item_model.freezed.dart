@@ -24,6 +24,8 @@ mixin _$ShoppingItemModel {
   String? get title => throw _privateConstructorUsedError;
   double? get price => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  RatingModel? get rating => throw _privateConstructorUsedError;
   bool get inCart => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +41,15 @@ abstract class $ShoppingItemModelCopyWith<$Res> {
       _$ShoppingItemModelCopyWithImpl<$Res, ShoppingItemModel>;
   @useResult
   $Res call(
-      {int? id, String? title, double? price, String? image, bool inCart});
+      {int? id,
+      String? title,
+      double? price,
+      String? image,
+      String? description,
+      RatingModel? rating,
+      bool inCart});
+
+  $RatingModelCopyWith<$Res>? get rating;
 }
 
 /// @nodoc
@@ -59,6 +69,8 @@ class _$ShoppingItemModelCopyWithImpl<$Res, $Val extends ShoppingItemModel>
     Object? title = freezed,
     Object? price = freezed,
     Object? image = freezed,
+    Object? description = freezed,
+    Object? rating = freezed,
     Object? inCart = null,
   }) {
     return _then(_value.copyWith(
@@ -78,11 +90,31 @@ class _$ShoppingItemModelCopyWithImpl<$Res, $Val extends ShoppingItemModel>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as RatingModel?,
       inCart: null == inCart
           ? _value.inCart
           : inCart // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RatingModelCopyWith<$Res>? get rating {
+    if (_value.rating == null) {
+      return null;
+    }
+
+    return $RatingModelCopyWith<$Res>(_value.rating!, (value) {
+      return _then(_value.copyWith(rating: value) as $Val);
+    });
   }
 }
 
@@ -95,7 +127,16 @@ abstract class _$$_ShoppingItemModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id, String? title, double? price, String? image, bool inCart});
+      {int? id,
+      String? title,
+      double? price,
+      String? image,
+      String? description,
+      RatingModel? rating,
+      bool inCart});
+
+  @override
+  $RatingModelCopyWith<$Res>? get rating;
 }
 
 /// @nodoc
@@ -113,6 +154,8 @@ class __$$_ShoppingItemModelCopyWithImpl<$Res>
     Object? title = freezed,
     Object? price = freezed,
     Object? image = freezed,
+    Object? description = freezed,
+    Object? rating = freezed,
     Object? inCart = null,
   }) {
     return _then(_$_ShoppingItemModel(
@@ -132,6 +175,14 @@ class __$$_ShoppingItemModelCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as RatingModel?,
       inCart: null == inCart
           ? _value.inCart
           : inCart // ignore: cast_nullable_to_non_nullable
@@ -144,7 +195,13 @@ class __$$_ShoppingItemModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ShoppingItemModel implements _ShoppingItemModel {
   _$_ShoppingItemModel(
-      {this.id, this.title, this.price, this.image, this.inCart = false});
+      {this.id,
+      this.title,
+      this.price,
+      this.image,
+      this.description,
+      this.rating,
+      this.inCart = false});
 
   factory _$_ShoppingItemModel.fromJson(Map<String, dynamic> json) =>
       _$$_ShoppingItemModelFromJson(json);
@@ -158,12 +215,16 @@ class _$_ShoppingItemModel implements _ShoppingItemModel {
   @override
   final String? image;
   @override
+  final String? description;
+  @override
+  final RatingModel? rating;
+  @override
   @JsonKey()
   final bool inCart;
 
   @override
   String toString() {
-    return 'ShoppingItemModel(id: $id, title: $title, price: $price, image: $image, inCart: $inCart)';
+    return 'ShoppingItemModel(id: $id, title: $title, price: $price, image: $image, description: $description, rating: $rating, inCart: $inCart)';
   }
 
   @override
@@ -175,12 +236,16 @@ class _$_ShoppingItemModel implements _ShoppingItemModel {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.image, image) || other.image == image) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.inCart, inCart) || other.inCart == inCart));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, price, image, inCart);
+  int get hashCode => Object.hash(
+      runtimeType, id, title, price, image, description, rating, inCart);
 
   @JsonKey(ignore: true)
   @override
@@ -203,6 +268,8 @@ abstract class _ShoppingItemModel implements ShoppingItemModel {
       final String? title,
       final double? price,
       final String? image,
+      final String? description,
+      final RatingModel? rating,
       final bool inCart}) = _$_ShoppingItemModel;
 
   factory _ShoppingItemModel.fromJson(Map<String, dynamic> json) =
@@ -216,6 +283,10 @@ abstract class _ShoppingItemModel implements ShoppingItemModel {
   double? get price;
   @override
   String? get image;
+  @override
+  String? get description;
+  @override
+  RatingModel? get rating;
   @override
   bool get inCart;
   @override

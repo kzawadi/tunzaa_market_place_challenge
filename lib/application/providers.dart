@@ -32,7 +32,7 @@ final cartProvider = StateProvider<List<ShoppingItemModel>>((ref) {
 
 // a map of ("page name", WidgetBuilder) pairs
 final availablePages = <String, WidgetBuilder>{
-  'Shopping Page': (_) => const ShoppingPage(),
+  'Shopping Page': (_) => ShoppingPage(),
   'Cart Page': (_) => const CartPage(),
 };
 
