@@ -84,7 +84,11 @@ class ShoppingPage extends ConsumerWidget {
           ),
           state.isLoading
               ? const Center(child: CupertinoActivityIndicator())
-              : Expanded(child: ProductView(shoppingItemModel: state.item)),
+              : Expanded(
+                  child: ProductView(
+                  shoppingItemModel: state.item,
+                  isCart: false,
+                )),
         ],
       ),
     );

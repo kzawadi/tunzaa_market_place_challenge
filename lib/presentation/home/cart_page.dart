@@ -29,6 +29,7 @@ class CartPage extends ConsumerWidget {
               ))
             : ProductView(
                 shoppingItemModel: data,
+                isCart: true,
               ));
   }
 }

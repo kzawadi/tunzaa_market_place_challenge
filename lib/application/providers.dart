@@ -30,6 +30,15 @@ final cartProvider = StateProvider<List<ShoppingItemModel>>((ref) {
   return result;
 });
 
+final cartValue = StateProvider<double>((ref) {
+  final cartItem = ref.watch(cartProvider);
+  double value = 0;
+
+  for (var element in cartItem) {
+    value += element.price!;
+  }
+  return value;
+});
 // a map of ("page name", WidgetBuilder) pairs
 final availablePages = <String, WidgetBuilder>{
   'Shopping Page': (_) => ShoppingPage(),
