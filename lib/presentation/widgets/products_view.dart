@@ -176,7 +176,7 @@ class ProductView extends ConsumerWidget {
                                 color: Colors.red, fontSize: 15),
                           ),
                           Text(
-                            value.toString(),
+                            value,
                             style: GoogleFonts.nunito(
                                 color: Colors.blue, fontSize: 22),
                           ),

@@ -14,7 +14,7 @@ import 'package:tunzaa_market_place_challenge/domain/models/shopping_item_model.
 /// {Functional programming}. so we handle every situation according
 
 class ProductNotifier extends StateNotifier<ShopState> {
-  ProductNotifier({required this.ref}) : super(const ShopState()) {
+  ProductNotifier({required this.ref}) : super(ShopState(failures: none())) {
     fetchItems();
   }
   final Ref ref;
@@ -27,7 +27,7 @@ class ProductNotifier extends StateNotifier<ShopState> {
 
     final results = await shooppingServicesInterface.fetchItems();
     state = results.fold(
-      (l) => state.copyWith(failures: l),
+      (l) => state.copyWith(failures: some(l), isLoading: false),
       (r) => state.copyWith(item: r, isLoading: false),
     );
   }

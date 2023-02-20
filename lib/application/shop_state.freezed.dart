@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ShopState {
   List<ShoppingItemModel> get item => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
-  TunzaaFailures? get failures => throw _privateConstructorUsedError;
+  Option<TunzaaFailures> get failures => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopStateCopyWith<ShopState> get copyWith =>
@@ -31,9 +31,9 @@ abstract class $ShopStateCopyWith<$Res> {
       _$ShopStateCopyWithImpl<$Res, ShopState>;
   @useResult
   $Res call(
-      {List<ShoppingItemModel> item, bool isLoading, TunzaaFailures? failures});
-
-  $TunzaaFailuresCopyWith<$Res>? get failures;
+      {List<ShoppingItemModel> item,
+      bool isLoading,
+      Option<TunzaaFailures> failures});
 }
 
 /// @nodoc
@@ -51,7 +51,7 @@ class _$ShopStateCopyWithImpl<$Res, $Val extends ShopState>
   $Res call({
     Object? item = null,
     Object? isLoading = null,
-    Object? failures = freezed,
+    Object? failures = null,
   }) {
     return _then(_value.copyWith(
       item: null == item
@@ -62,23 +62,11 @@ class _$ShopStateCopyWithImpl<$Res, $Val extends ShopState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      failures: freezed == failures
+      failures: null == failures
           ? _value.failures
           : failures // ignore: cast_nullable_to_non_nullable
-              as TunzaaFailures?,
+              as Option<TunzaaFailures>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TunzaaFailuresCopyWith<$Res>? get failures {
-    if (_value.failures == null) {
-      return null;
-    }
-
-    return $TunzaaFailuresCopyWith<$Res>(_value.failures!, (value) {
-      return _then(_value.copyWith(failures: value) as $Val);
-    });
   }
 }
 
@@ -90,10 +78,9 @@ abstract class _$$_ShopStateCopyWith<$Res> implements $ShopStateCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {List<ShoppingItemModel> item, bool isLoading, TunzaaFailures? failures});
-
-  @override
-  $TunzaaFailuresCopyWith<$Res>? get failures;
+      {List<ShoppingItemModel> item,
+      bool isLoading,
+      Option<TunzaaFailures> failures});
 }
 
 /// @nodoc
@@ -109,7 +96,7 @@ class __$$_ShopStateCopyWithImpl<$Res>
   $Res call({
     Object? item = null,
     Object? isLoading = null,
-    Object? failures = freezed,
+    Object? failures = null,
   }) {
     return _then(_$_ShopState(
       item: null == item
@@ -120,23 +107,22 @@ class __$$_ShopStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      failures: freezed == failures
+      failures: null == failures
           ? _value.failures
           : failures // ignore: cast_nullable_to_non_nullable
-              as TunzaaFailures?,
+              as Option<TunzaaFailures>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_ShopState extends _ShopState {
+class _$_ShopState implements _ShopState {
   const _$_ShopState(
       {final List<ShoppingItemModel> item = const [],
       this.isLoading = true,
-      this.failures})
-      : _item = item,
-        super._();
+      required this.failures})
+      : _item = item;
 
   final List<ShoppingItemModel> _item;
   @override
@@ -151,7 +137,7 @@ class _$_ShopState extends _ShopState {
   @JsonKey()
   final bool isLoading;
   @override
-  final TunzaaFailures? failures;
+  final Option<TunzaaFailures> failures;
 
   @override
   String toString() {
@@ -181,19 +167,18 @@ class _$_ShopState extends _ShopState {
       __$$_ShopStateCopyWithImpl<_$_ShopState>(this, _$identity);
 }
 
-abstract class _ShopState extends ShopState {
+abstract class _ShopState implements ShopState {
   const factory _ShopState(
       {final List<ShoppingItemModel> item,
       final bool isLoading,
-      final TunzaaFailures? failures}) = _$_ShopState;
-  const _ShopState._() : super._();
+      required final Option<TunzaaFailures> failures}) = _$_ShopState;
 
   @override
   List<ShoppingItemModel> get item;
   @override
   bool get isLoading;
   @override
-  TunzaaFailures? get failures;
+  Option<TunzaaFailures> get failures;
   @override
   @JsonKey(ignore: true)
   _$$_ShopStateCopyWith<_$_ShopState> get copyWith =>

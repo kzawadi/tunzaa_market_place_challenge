@@ -34,7 +34,7 @@ class ShoppingServiceImpl implements ShoppingServicesInterface {
             }
 
             return right(shoppingList);
-          } else if (value.statusCode == 503) {
+          } else if (value.statusCode == 404) {
             if (kDebugMode) {
               print('failed to Fetch data:  ${value.statusCode}');
             }

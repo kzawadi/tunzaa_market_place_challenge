@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tunzaa_market_place_challenge/application/providers.dart';
 import 'package:tunzaa_market_place_challenge/presentation/utils/page_scaffold.dart';
 import 'package:tunzaa_market_place_challenge/presentation/widgets/products_view.dart';
+import 'package:tunzaa_market_place_challenge/presentation/widgets/tunzaa_failure_view.dart';
 
 class ShoppingPage extends ConsumerWidget {
   ShoppingPage({super.key});
@@ -39,58 +40,66 @@ class ShoppingPage extends ConsumerWidget {
 
     return PageScaffold(
       title: 'Shopping',
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0)),
+      body: state.isLoading
+          ? const Center(child: CupertinoActivityIndicator())
+          : state.failures.isSome()
+              ? state.failures.fold(
+                  () => const SizedBox(),
+                  (a) => TunzaaFaiureView(tunzaaFailures: a),
+                )
+              : Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextField(
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0)),
+                                    ),
+                                    hintText: 'search an iterm',
+                                  ),
+                                  onChanged: onSearchChanged),
+                            ),
                           ),
-                          hintText: 'search an iterm',
-                        ),
-                        onChanged: onSearchChanged),
-                  ),
-                ),
-                Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                      keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        ),
-                        hintText: 'Filter by price',
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20.0)),
+                                  ),
+                                  hintText: 'Filter by price',
+                                ),
+                                onChanged: onFilterChanged,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      onChanged: onFilterChanged,
                     ),
-                  ),
+                    Expanded(
+                      child: ProductView(
+                        shoppingItemModel: state.item,
+                        isCart: false,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          state.isLoading
-              ? const Center(child: CupertinoActivityIndicator())
-              : Expanded(
-                  child: ProductView(
-                  shoppingItemModel: state.item,
-                  isCart: false,
-                )),
-        ],
-      ),
     );
   }
 }
