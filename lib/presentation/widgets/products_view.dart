@@ -32,13 +32,22 @@ class ProductView extends ConsumerWidget {
           return GestureDetector(
             onTap: () {
               showModalBottomSheet<void>(
+                enableDrag: true,
                 // context and builder are
                 // required properties in this widget
+                isDismissible: true,
+                useSafeArea: true,
                 context: context,
                 constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width >= 600
                       ? MediaQuery.of(context).size.width / 2
                       : MediaQuery.of(context).size.width,
+                ),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(14),
+                    topRight: Radius.circular(14),
+                  ),
                 ),
                 builder: (BuildContext context) {
                   // we set up a container inside which
