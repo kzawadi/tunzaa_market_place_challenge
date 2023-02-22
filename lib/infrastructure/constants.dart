@@ -1,1 +1,1 @@
-const String apiUrl = 'https://fakestoreapi.com/products/';
+const String apiUri = 'https://fakestoreapi.com/products/';

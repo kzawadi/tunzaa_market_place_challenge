@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 import 'package:tunzaa_market_place_challenge/domain/core/tunzaa_failures.dart';
 import 'package:tunzaa_market_place_challenge/domain/interfaces/shopping_interface.dart';
 import 'package:tunzaa_market_place_challenge/domain/models/shopping_item_model.dart';
@@ -13,15 +12,12 @@ import 'package:tunzaa_market_place_challenge/infrastructure/constants.dart';
 /// this can be used as a union case and act accordingly either in ui
 /// or where it's returned
 class ShoppingServiceImpl implements ShoppingServicesInterface {
-  http.Client client = http.Client();
-  Map<String, String> headers = {'Accept': 'application/json'};
-
   final Dio _dio = Dio();
 
   @override
   Future<Either<TunzaaFailures, List<ShoppingItemModel>>> fetchItems() async {
     try {
-      return await _dio.get(apiUrl).then(
+      return await _dio.get(apiUri).then(
         (value) {
           if (value.statusCode == 200) {
             final data = value.data;
